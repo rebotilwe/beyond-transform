@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaLinkedin } from 'react-icons/fa';
-import { blogPosts } from '../data/blogPosts';
+import { blogPosts } from '../../data/blogPosts';
 
 const BlogPreview = () => {
   return (
