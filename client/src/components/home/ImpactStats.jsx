@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { stats } from '../data/stats';
+// CORRECT
+import { stats } from '../../data/stats';
 
 const ImpactStats = () => {
   return (

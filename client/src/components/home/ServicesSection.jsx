@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
-import { services } from '../data/services';
+// CORRECT
+import { services } from '../../data/services';
 
 const ServicesSection = () => {
   return (

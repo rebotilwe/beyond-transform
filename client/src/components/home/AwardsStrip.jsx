@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaAward, FaStar } from 'react-icons/fa';
-import { awards } from '../data/awards';
+// CORRECT - Add this
+import { awards } from '../../data/awards';
 
 const AwardsStrip = () => {
   return (

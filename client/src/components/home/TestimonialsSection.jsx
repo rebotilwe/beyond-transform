@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
-import { testimonials } from '../data/testimonials';
+// CORRECT
+import { testimonials } from '../../data/testimonials';
 
 const TestimonialsSection = () => {
   // Only show first 4 on homepage

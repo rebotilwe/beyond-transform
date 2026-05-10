@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { partnerships } from '../data/partners';
+// CORRECT
+import { partnerships } from '../../data/partners';
 
 const PartnershipsSection = () => {
   return (
