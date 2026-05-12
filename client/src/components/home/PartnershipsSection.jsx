@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-// CORRECT
 import { partnerships } from '../../data/partners';
 
 const PartnershipsSection = () => {
@@ -27,7 +26,7 @@ const PartnershipsSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-6 bg-gray-50 rounded-2xl hover:shadow-lg transition-all"
+              className="text-center p-6 bg-gray-50 rounded-2xl hover:shadow-lg transition-all cursor-pointer hover:-translate-y-1"
             >
               <div className="text-4xl mb-3">{partner.icon}</div>
               <h3 className="font-bold text-primary text-lg">{partner.name}</h3>
@@ -37,7 +36,7 @@ const PartnershipsSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Link to="/partnerships" className="text-secondary font-semibold hover:underline">
+          <Link to="/partnerships" className="text-secondary font-semibold hover:underline inline-flex items-center gap-2">
             View All Partnerships →
           </Link>
         </div>

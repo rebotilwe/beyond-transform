@@ -8,6 +8,9 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import MeetFounder from './pages/MeetFounder';
+import HRAcademy from './pages/HRAcademy';
+import Partnerships from './pages/Partnerships';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
               <Route path="/meet-founder" element={<MeetFounder />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
+                <Route path="/hr-academy" element={<HRAcademy />} />
+              <Route path="/partnerships" element={<Partnerships />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
         </main>

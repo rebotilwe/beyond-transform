@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   FaArrowRight,
   FaCalendarAlt,
@@ -70,9 +71,13 @@ const Blog = () => {
     },
   ];
 
+  const featured = articles[0];
+  const rest = articles.slice(1);
+
   return (
     <div className="overflow-hidden">
-      {/* Hero Section */}
+
+      {/* HERO */}
       <section
         className="relative py-32 bg-cover bg-center"
         style={{
@@ -80,8 +85,7 @@ const Blog = () => {
             "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2070&auto=format&fit=crop')",
         }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-black/70" />
 
         <div className="container-custom relative z-10">
           <motion.div
@@ -101,95 +105,118 @@ const Blog = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl">
-              Explore expert insights, leadership perspectives, HR trends, and
-              transformational conversations shaping the future of organizations,
-              communities, and people.
+              Explore expert perspectives on leadership, human capital, youth empowerment,
+              and the future of work through a human-centered lens.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Intro Section */}
-      <section className="py-20 bg-white">
+      {/* FEATURED ARTICLE */}
+      <section className="py-24 bg-white">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-10">
             <span className="text-secondary uppercase tracking-[0.2em] font-semibold text-sm">
-              Knowledge & Impact
+              Featured Article
             </span>
+            <h2 className="section-title mt-4">Editor’s Pick</h2>
+          </div>
 
-            <h2 className="section-title mt-4">
-              Conversations That Inspire Change
-            </h2>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.img
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              src={featured.image}
+              alt={featured.title}
+              className="rounded-2xl shadow-2xl h-[500px] w-full object-cover"
+            />
 
-            <p className="section-subtitle">
-              Beyond Transform shares valuable perspectives on leadership,
-              workplace transformation, youth empowerment, women’s development,
-              mental wellness, and future-focused human capital strategies.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              <span className="bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-semibold">
+                {featured.category}
+              </span>
+
+              <h3 className="text-4xl font-bold text-primary mt-6 mb-4 leading-tight">
+                {featured.title}
+              </h3>
+
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                {featured.description}
+              </p>
+
+              <div className="flex gap-6 text-gray-500 text-sm mb-8">
+                <span className="flex items-center gap-2"><FaCalendarAlt /> {featured.date}</span>
+                <span className="flex items-center gap-2"><FaClock /> {featured.readTime}</span>
+                <span className="flex items-center gap-2"><FaUserTie /> Beyond Transform</span>
+              </div>
+
+              {/* FIXED BUTTON */}
+              <Link
+                to={`/blog/featured`}
+                className="btn-primary inline-flex items-center gap-3"
+              >
+                Read Full Article <FaArrowRight />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Blog Grid */}
-      <section className="pb-24 bg-white">
+      {/* GRID ARTICLES */}
+      <section className="pb-24 bg-gray-50">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-            {articles.map((article, index) => (
+
+          <div className="mb-12 text-center">
+            <h2 className="section-title">Latest Insights</h2>
+            <p className="section-subtitle">
+              Leadership, transformation, and human capital thinking
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
+            {rest.map((article, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
               >
-                {/* Image */}
-                <div className="overflow-hidden">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="h-60 w-full object-cover"
+                />
 
-                {/* Content */}
-                <div className="p-8">
-                  <span className="inline-block bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <div className="p-7">
+                  <span className="text-secondary text-sm font-semibold">
                     {article.category}
                   </span>
 
-                  <h3 className="text-2xl font-bold text-primary mb-4 leading-tight group-hover:text-secondary transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-primary mt-3 mb-3">
                     {article.title}
                   </h3>
 
-                  <p className="text-gray-600 leading-relaxed mb-6">
+                  <p className="text-gray-600 text-sm mb-5">
                     {article.description}
                   </p>
 
-                  {/* Meta */}
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
-                    <div className="flex items-center gap-2">
-                      <FaCalendarAlt />
-                      <span>{article.date}</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <FaClock />
-                      <span>{article.readTime}</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <FaUserTie />
-                      <span>Beyond Transform</span>
-                    </div>
+                  <div className="flex justify-between text-xs text-gray-500 mb-5">
+                    <span>{article.date}</span>
+                    <span>{article.readTime}</span>
                   </div>
 
-                  {/* CTA */}
-                  <button className="text-secondary font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Read Article
-                    <FaArrowRight className="text-sm" />
-                  </button>
+                  {/* FIXED BUTTON */}
+                  <Link
+                    to={`/blog/${index}`}
+                    className="text-secondary font-semibold inline-flex items-center gap-2"
+                  >
+                    Read More <FaArrowRight />
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -197,99 +224,31 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Featured Insight Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Image */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
-                alt="Thought leadership"
-                className="rounded-2xl shadow-2xl w-full h-[550px] object-cover"
-              />
-            </motion.div>
-
-            {/* Content */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-secondary uppercase tracking-[0.2em] font-semibold text-sm">
-                Featured Insight
-              </span>
-
-              <h2 className="text-4xl md:text-5xl font-bold text-primary mt-4 mb-6 leading-tight">
-                The Human Side
-                <br />
-                Of Transformation
-              </h2>
-
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                In an increasingly digital and automated world, organizations
-                are being challenged to rethink how they lead, empower, and
-                support people.
-              </p>
-
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                Beyond Transform believes that sustainable transformation
-                happens when businesses combine innovation with empathy,
-                leadership with purpose, and strategy with human connection.
-              </p>
-
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Through thought leadership, empowerment initiatives, and
-                transformational consulting, we continue to shape conversations
-                that inspire meaningful impact.
-              </p>
-
-              <button className="btn-primary inline-flex items-center gap-3">
-                Explore More Insights
-                <FaArrowRight />
-              </button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
+      {/* FINAL CTA */}
       <section className="py-24 bg-primary text-white">
-        <div className="container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
+        <div className="container-custom text-center max-w-4xl mx-auto">
+          <span className="text-secondary uppercase tracking-[0.2em] font-semibold text-sm">
+            Stay Connected
+          </span>
+
+          <h2 className="text-4xl md:text-6xl font-bold mt-4 mb-6">
+            Insights That Shape
+            <br />
+            The Future of Work
+          </h2>
+
+          <p className="text-gray-300 text-lg mb-10">
+            Subscribe to receive leadership insights, transformation thinking, and
+            human capital strategies.
+          </p>
+
+          {/* FIXED BUTTON */}
+          <Link
+            to="/contact"
+            className="bg-secondary text-primary px-10 py-4 rounded-lg font-semibold inline-flex items-center gap-3"
           >
-            <span className="text-secondary uppercase tracking-[0.2em] font-semibold text-sm">
-              Stay Connected
-            </span>
-
-            <h2 className="text-4xl md:text-6xl font-bold mt-4 mb-6 leading-tight">
-              Insights That Empower
-              <br />
-              Growth & Transformation
-            </h2>
-
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10">
-              Stay informed with the latest conversations, leadership insights,
-              and transformational perspectives shaping the future of people,
-              organizations, and communities.
-            </p>
-
-            <button className="bg-secondary text-primary px-10 py-4 rounded-lg font-semibold hover:bg-secondary-dark transition-all duration-300 inline-flex items-center gap-3">
-              Subscribe For Updates
-              <FaArrowRight />
-            </button>
-          </motion.div>
+            Subscribe <FaArrowRight />
+          </Link>
         </div>
       </section>
     </div>
