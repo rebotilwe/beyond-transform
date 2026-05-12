@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import ScrollToTop from './components/common/ScrollToTop';
+import ScrollToTopOnRouteChange from './components/common/ScrollToTopOnRouteChange';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -15,6 +17,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <Router>
+      <ScrollToTopOnRouteChange />
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">
@@ -26,13 +29,14 @@ function App() {
               <Route path="/meet-founder" element={<MeetFounder />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
-                <Route path="/hr-academy" element={<HRAcademy />} />
+              <Route path="/hr-academy" element={<HRAcademy />} />
               <Route path="/partnerships" element={<Partnerships />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
         </main>
         <Footer />
+        <ScrollToTop />
       </div>
     </Router>
   );
